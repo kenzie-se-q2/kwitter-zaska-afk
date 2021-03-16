@@ -20,7 +20,7 @@ export const logoutRequest = (token) => {
 export const createUserRequest = (username, password, displayName) => {
   return fetch(baseURL + "users", {
     method: "POST",
-    header: { Accept: "application/json", "Content-Type": "application/json" },
+    headers: { "Content-Type": "application/json" },
     body: JSON.stringify({
       username,
       displayName,
@@ -42,7 +42,7 @@ export const updateUserRequest = (
 ) => {
   return fetch(baseURL + `users/${username}`, {
     method: "PATCH",
-    header: {
+    headers: {
       Authorization: "Bearer " + token,
       "Content-Type": "application/json",
     },
@@ -57,7 +57,7 @@ export const updateUserRequest = (
 export const deleteUserRequest = (username, token) => {
   return fetch(baseURL + `users/${username}`, {
     method: "DELETE",
-    header: { Authorization: "Bearer " + token },
+    headers: { Authorization: "Bearer " + token },
   }).then((res) => res.json())
 }
 
@@ -83,7 +83,7 @@ export const getPictureRequest = (username) => {
 export const createMessageRequest = (token, message) => {
   return fetch(baseURL + "messages", {
     method: "POST",
-    header: {
+    headers: {
       Authorization: "Bearer " + token,
       "Content-Type": "application/json",
     },
@@ -108,14 +108,14 @@ export const getMessageList = (limit, offset) => {
 export const deleteMessageRequest = (messageId, token) => {
   return fetch(`${baseURL}messages/${messageId}`, {
     method: "DELETE",
-    header: { Authorization: "Bearer " + token },
+    headers: { Authorization: "Bearer " + token },
   }).then((res) => res.json())
 }
 
 export const addLikeRequest = (messageId, token) => {
   return fetch(baseURL + "likes", {
     method: "POST",
-    header: {
+    headers: {
       Authorization: "Bearer " + token,
       "Content-Type": "application/json",
     },
@@ -128,6 +128,6 @@ export const addLikeRequest = (messageId, token) => {
 export const removeLikeRequest = (likeId, token) => {
   return fetch(baseURL + `likes/${likeId}`, {
     method: "DELETE",
-    header: { Authorization: "Bearer " + token },
+    headers: { Authorization: "Bearer " + token },
   }).then((res) => res.json())
 }
