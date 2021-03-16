@@ -1,16 +1,15 @@
-import React from "react";
-import { Link } from "react-router-dom";
-import { useStore } from "../store/store";
-import { logoutRequest } from "../fetchRequests";
+import React from "react"
+import { Link } from "react-router-dom"
+import { ACTIONS, useStore } from "../store/store"
+import { logoutRequest } from "../fetchRequests"
 
 function Menu(props) {
-  const user = useStore((state) => state.user);
-  const dispatch = useStore((state) => state.dispatch);
+  const user = useStore((state) => state.user)
+  const dispatch = useStore((state) => state.dispatch)
 
   const logout = (e) => {
-    logoutRequest(user.token).then(()=>dispatch({type:"LOGOUT"}));
-    
-  };
+    logoutRequest(user.token).then(() => dispatch({ type: ACTIONS.LOGOUT }))
+  }
 
   return (
     <div id="menu">
@@ -20,7 +19,7 @@ function Menu(props) {
         {user.token && <button onClick={logout}>Logout</button>}
       </div>
     </div>
-  );
-};
+  )
+}
 
-export default Menu;
+export default Menu

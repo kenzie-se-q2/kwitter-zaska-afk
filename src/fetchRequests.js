@@ -20,7 +20,7 @@ export const logoutRequest = (token) => {
 export const createUserRequest = (username, password, displayName) => {
   return fetch(baseURL + "users", {
     method: "POST",
-    header: { "Content-Type": "application/json" },
+    header: { Accept: "application/json", "Content-Type": "application/json" },
     body: JSON.stringify({
       username,
       displayName,
