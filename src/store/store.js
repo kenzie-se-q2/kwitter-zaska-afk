@@ -2,10 +2,7 @@ import create from "zustand"
 import { devtools, redux } from "zustand/middleware"
 
 // define the store's initial state
-const initialState = {
-  user: { token: "" },
-  messages: [],
-}
+const initialState = { user: { token: "" }, messages: [] }
 
 // set action types
 export const ACTIONS = {
