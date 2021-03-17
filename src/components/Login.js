@@ -1,28 +1,29 @@
-import React, { useState } from "react";
-import { loginRequest } from "../fetchRequests";
+import React, { useState } from "react"
+import { Link } from "react-router-dom"
+import { loginRequest } from "../fetchRequests"
 
-import { LOGIN, useStore } from "../store/store";
+import { ACTIONS, useStore } from "../store/store"
 
-function Login(props){
-  const dispatch = useStore((state) => state.dispatch);
+function Login(props) {
+  const dispatch = useStore((state) => state.dispatch)
 
   const [formData, setFormData] = useState({
     username: "",
     password: "",
-  });
+  })
 
   const handleLogin = (e) => {
-    e.preventDefault();
+    e.preventDefault()
     loginRequest(formData.username, formData.password).then((userData) =>
-      dispatch({ type: LOGIN, payload: userData })
-    );
-  };
+      dispatch({ type: ACTIONS.LOGIN, payload: userData })
+    )
+  }
 
   const handleChange = (e) => {
-    const inputName = e.target.name;
-    const inputValue = e.target.value;
-    setFormData((state) => ({ ...state, [inputName]: inputValue }));
-  };
+    const inputName = e.target.name
+    const inputValue = e.target.value
+    setFormData((state) => ({ ...state, [inputName]: inputValue }))
+  }
 
   return (
     <>
@@ -45,9 +46,13 @@ function Login(props){
           onChange={handleChange}
         />
         <button type="submit">Login</button>
+
+        <p>
+          Don't hava an account? Sign up <Link to="/register">here!</Link>
+        </p>
       </form>
     </>
-  );
-};
+  )
+}
 
-export default Login;
+export default Login

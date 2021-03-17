@@ -9,6 +9,8 @@ See my.kenzie.academy for details.
 
 ## Credits and References
 
-Team Members:
+Team Members: Isaac Butterfield, Joshua Dixon, Rosalina Ruiz, Zach Baxter, and Zachary Balaska
 
 References
+
+- [React Router](https://reactrouter.com/web/api/Redirect)
