@@ -2,21 +2,40 @@ import create from "zustand"
 import { devtools, redux } from "zustand/middleware"
 
 // define the store's initial state
-const initialState = { user: { token: "" }, messages: [] }
+const initialState = {
+  user: { token: "" },
+  messages: [],
+  isRedirecting: false,
+}
 
 // set action types
 export const ACTIONS = {
   LOGOUT: "LOGOUT",
   LOGIN: "LOGIN",
+  SET_MESSAGES: "SET_MESSAGES",
+  SET_REDIRECTING: "SET_REDIRECTING",
 }
 
 // define reducer function
 const reducer = (state, action) => {
   switch (action.type) {
     case ACTIONS.LOGIN:
-      return { user: action.payload }
+      return {
+        ...state,
+        user: {
+          username: action.payload.username,
+          token: action.payload.token,
+        },
+      }
     case ACTIONS.LOGOUT:
-      return { user: {} }
+      return { ...state, user: {} }
+    case ACTIONS.SET_MESSAGES:
+      return {
+        ...state,
+        messages: [action.payload.messages],
+      }
+    case ACTIONS.SET_REDIRECTING:
+      return { ...state, isRedirecting: !state.isRedirecting }
     default:
       return state
   }
