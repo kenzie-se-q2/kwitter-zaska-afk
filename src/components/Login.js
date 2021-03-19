@@ -16,8 +16,19 @@ function Login(props) {
   const handleLogin = (e) => {
     e.preventDefault()
     loginRequest(formData.username, formData.password)
-      .then((userData) => dispatch({ type: ACTIONS.LOGIN, payload: userData }))
-      .then(dispatch({ type: ACTIONS.SET_REDIRECTING }))
+      .then((userData) => {
+        if (userData.message === undefined) {
+          return dispatch({ type: ACTIONS.LOGIN, payload: userData })
+        } else {
+          alert(userData.message)
+          return false
+        }
+      })
+      .then((value) => {
+        if (value) {
+          dispatch({ type: ACTIONS.SET_REDIRECTING })
+        }
+      })
   }
 
   const handleChange = (e) => {
