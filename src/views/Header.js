@@ -1,6 +1,7 @@
 import { Nav, Navbar, NavLink } from "react-bootstrap";
 import { useStore, ACTIONS } from "../store/store";
 import { logoutRequest } from "../fetchRequests";
+import { Link } from "react-router-dom";
 
 function NavView(props) {
   const user = useStore((state) => state.user);
@@ -20,7 +21,12 @@ function NavView(props) {
       <NavLink href="#home">Home</NavLink>
       <NavLink href="#settings">Settings</NavLink>
       <NavLink href="#Profile">Profile</NavLink>
+
       <button onClick={logout}>Logout</button>
+
+      <Link to="/Profile">
+        <button>Profile</button>
+      </Link>
     </>
   );
 }
