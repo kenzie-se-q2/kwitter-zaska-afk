@@ -23,22 +23,21 @@ const Register = (props) => {
       formData.password,
       formData.displayName
     )
-      // If createUserRequest was successful, run the loginRequest
+      .then(loginRequest(formData.username, formData.password))
       .then((userData) => {
-        if (userData.user.username !== undefined) {
-          return loginRequest(formData.username, formData.password)
+        if (userData.message === undefined) {
+          dispatch({ type: ACTIONS.LOGIN, payload: userData })
         } else {
           alert(userData.message)
-        }
-      })
-      // If loginRequest work properly, run the dispatch from the store
-      .then((userData) => {
-        if (userData !== undefined) {
-          dispatch({ type: ACTIONS.LOGIN, payload: userData })
+          return false
         }
       })
       // If everything worked out well, redirect to the main page
-      .then(dispatch({ type: ACTIONS.SET_REDIRECTING }))
+      .then((value) => {
+        if (value) {
+          return dispatch({ type: ACTIONS.SET_REDIRECTING })
+        }
+      })
   }
 
   // Handle change in form
