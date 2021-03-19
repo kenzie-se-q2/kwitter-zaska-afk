@@ -21,13 +21,6 @@ const Messages = () => {
   const [newMessage, setNewMessage] = useState("")
   const [count, setCount] = useState(0)
 
-  // Handle Logout
-  const logout = (e) => {
-    logoutRequest(user.token)
-      .then(() => dispatch({ type: ACTIONS.LOGOUT }))
-      .then(dispatch({ type: ACTIONS.SET_REDIRECTING }))
-  }
-
   // Get a list of the most recent messages
   useEffect(() => {
     setTimeout(() => {
@@ -54,9 +47,6 @@ const Messages = () => {
 
   return (
     <>
-      <div id="logout">
-        {user.token && <button onClick={logout}>Logout</button>}
-      </div>
       <form id="message-form" onSubmit={handleSubmit}>
         <textarea
           type="text"
