@@ -80,7 +80,7 @@ export const getPictureRequest = (username) => {
 //   })
 // }
 
-export const createMessageRequest = (token, message) => {
+export const createMessageRequest = (token, text) => {
   return fetch(baseURL + "messages", {
     method: "POST",
     headers: {
@@ -88,7 +88,7 @@ export const createMessageRequest = (token, message) => {
       "Content-Type": "application/json",
     },
     body: JSON.stringify({
-      message,
+      text,
     }),
   }).then((res) => res.json())
 }

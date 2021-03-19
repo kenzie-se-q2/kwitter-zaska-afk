@@ -1,11 +1,12 @@
 import React, { useState } from "react"
-import { Link } from "react-router-dom"
+import { Link, Redirect } from "react-router-dom"
 import { loginRequest } from "../fetchRequests"
 
 import { ACTIONS, useStore } from "../store/store"
 
 function Login(props) {
   const dispatch = useStore((state) => state.dispatch)
+  const isRedirecting = useStore((state) => state.isRedirecting)
 
   const [formData, setFormData] = useState({
     username: "",
@@ -14,9 +15,9 @@ function Login(props) {
 
   const handleLogin = (e) => {
     e.preventDefault()
-    loginRequest(formData.username, formData.password).then((userData) =>
-      dispatch({ type: ACTIONS.LOGIN, payload: userData })
-    )
+    loginRequest(formData.username, formData.password)
+      .then((userData) => dispatch({ type: ACTIONS.LOGIN, payload: userData }))
+      .then(dispatch({ type: ACTIONS.SET_REDIRECTING }))
   }
 
   const handleChange = (e) => {
@@ -51,6 +52,7 @@ function Login(props) {
           Don't hava an account? Sign up <Link to="/register">here!</Link>
         </p>
       </form>
+      {isRedirecting && <Redirect to="/messages" />}
     </>
   )
 }

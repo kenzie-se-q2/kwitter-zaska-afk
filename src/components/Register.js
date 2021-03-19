@@ -6,9 +6,7 @@ import { ACTIONS, useStore } from "../store/store"
 
 const Register = (props) => {
   const dispatch = useStore((state) => state.dispatch)
-  const user = useStore((state) => state.user)
-
-  const [isRedirecting, setIsRedirecting] = useState(false)
+  const isRedirecting = useStore((state) => state.isRedirecting)
 
   const [formData, setFormData] = useState({
     username: "",
@@ -40,15 +38,7 @@ const Register = (props) => {
         }
       })
       // If everything worked out well, redirect to the main page
-      .then(
-        setIsRedirecting((isRedirecting) => {
-          if (user.token === "") {
-            return isRedirecting
-          } else {
-            return !isRedirecting
-          }
-        })
-      )
+      .then(dispatch({ type: ACTIONS.SET_REDIRECTING }))
   }
 
   // Handle change in form
