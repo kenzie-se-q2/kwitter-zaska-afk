@@ -14,22 +14,28 @@ const MessageItem = (props) => {
   const dispatch = useStore((state) => state.dispatch)
 
   const [buttonName, setButtonName] = useState("Like")
+  const [isfirstRender, setIsFirstRender] = useState(true)
 
+  // Set button name when first loading
   useEffect(() => {
     const likeObj = props.likes.filter(
       (like) => like.username === user.username
     )[0]
 
-    if (likeObj) {
+    if (likeObj && isfirstRender) {
       setButtonName("Remove Like")
+      setIsFirstRender(false)
     }
     // eslint-disable-next-line
-  }, [])
+  })
 
+  // Handle like button
   const handleClick = () => {
+    // When Liking a post
     if (buttonName === "Like") {
       const messageId = props.id
       addLikeRequest(messageId, user.token).then(setButtonName("Remove Like"))
+      // When removing a like from a post
     } else {
       const messageObj = messages.filter(
         (message) => message.id === props.id
@@ -42,6 +48,7 @@ const MessageItem = (props) => {
       removeLikeRequest(likeId, user.token).then(setButtonName("Like"))
     }
 
+    // Get updated messages
     setTimeout(() => {
       getMessageList(15, 0).then((res) => {
         dispatch({
@@ -49,7 +56,7 @@ const MessageItem = (props) => {
           payload: { messages: res.messages },
         })
       })
-    }, 700)
+    }, 500)
   }
 
   return (
