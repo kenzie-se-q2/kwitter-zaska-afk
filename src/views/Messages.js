@@ -2,6 +2,7 @@ import { useState, useEffect } from "react"
 import { Redirect } from "react-router-dom"
 import { useStore, ACTIONS } from "../store/store"
 
+import MessageList from "./MessageList"
 import {
   getMessageList,
   createMessageRequest,
@@ -33,6 +34,7 @@ const Messages = () => {
         })
       )
     }, 500)
+    //eslint-disable-next-line
   }, [count])
 
   const handleChange = (event) => {
@@ -52,17 +54,16 @@ const Messages = () => {
         {user.token && <button onClick={logout}>Logout</button>}
       </div>
       <form id="message-form" onSubmit={handleSubmit}>
-        <label htmlFor="message"></label>
-        <input
+        <textarea
           type="text"
-          name="message"
           required
           value={newMessage}
           placeholder="What do you want to say?"
           onChange={handleChange}
-        ></input>
+        ></textarea>
         <button type="submit">Post</button>
       </form>
+      {messages && <MessageList />}
       {!isRedirecting && <Redirect to="/" />}
     </>
   )
