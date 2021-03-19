@@ -30,7 +30,7 @@ const Name =({
       onChange={onChange} 
       maxlength="25" 
       value={value} 
-      placeholder="Alexa" 
+      placeholder="" 
       required/>
   </div>
 
@@ -49,7 +49,7 @@ const Status =({
       onChange={onChange} 
       maxLength="35" 
       value={value} 
-      placeholder="It's a nice day!" 
+      placeholder="" 
       required/>
   </div>
 
