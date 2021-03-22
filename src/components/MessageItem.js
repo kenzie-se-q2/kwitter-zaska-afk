@@ -1,11 +1,12 @@
 // TODO: create a MessageItem component which displays 1 message
 import { useState, useEffect } from "react"
-
+import { Link } from "react-router-dom"
 import { useStore, ACTIONS } from "../store/store"
 import {
   addLikeRequest,
   removeLikeRequest,
   getMessageList,
+  getPictureRequest,
 } from "../fetchRequests"
 
 const MessageItem = (props) => {
@@ -15,6 +16,7 @@ const MessageItem = (props) => {
 
   const [buttonName, setButtonName] = useState("Like")
   const [isfirstRender, setIsFirstRender] = useState(true)
+  const [profilePicture, setProfilePicture] = useState()
 
   // Set button name when first loading
   useEffect(() => {
@@ -26,8 +28,21 @@ const MessageItem = (props) => {
       setButtonName("Remove Like")
       setIsFirstRender(false)
     }
-    // eslint-disable-next-line
   })
+
+  useEffect(() => {
+    getPictureRequest(props.username).then((picture) => {
+      if (
+        picture.type === "image/jpeg" ||
+        picture.type === "image/png" ||
+        picture.type === "image/gif"
+      ) {
+        const pictureURL = URL.createObjectURL(picture)
+        picture.src = pictureURL
+        return setProfilePicture(picture)
+      }
+    })
+  }, [])
 
   // Handle like button
   const handleClick = () => {
@@ -61,6 +76,10 @@ const MessageItem = (props) => {
 
   return (
     <div id={`message-${props.id}`}>
+      <Link to={`/profile/${props.username}`}>
+        <img src={profilePicture && profilePicture.src} />
+        {props.username}
+      </Link>
       <textarea readOnly type="text">
         {props.value}
       </textarea>
