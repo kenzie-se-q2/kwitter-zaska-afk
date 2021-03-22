@@ -7,6 +7,7 @@ import {
   removeLikeRequest,
   getMessageList,
   getPictureRequest,
+  deleteMessageRequest,
 } from "../fetchRequests"
 
 const MessageItem = (props) => {
@@ -17,6 +18,7 @@ const MessageItem = (props) => {
   const [buttonName, setButtonName] = useState("Like")
   const [isfirstRender, setIsFirstRender] = useState(true)
   const [profilePicture, setProfilePicture] = useState()
+  const [isUserMessage, setIsUserMessage] = useState(false)
 
   // Set button name when first loading
   useEffect(() => {
@@ -42,6 +44,10 @@ const MessageItem = (props) => {
         return setProfilePicture(picture)
       }
     })
+
+    if (props.username === user.username) {
+      setIsUserMessage(true)
+    }
   }, [])
 
   // Handle like button
@@ -74,6 +80,19 @@ const MessageItem = (props) => {
     }, 500)
   }
 
+  const handleDelete = () => {
+    deleteMessageRequest(props.id, user.token)
+
+    setTimeout(() => {
+      getMessageList(15, 0).then((res) => {
+        dispatch({
+          type: ACTIONS.SET_MESSAGES,
+          payload: { messages: res.messages },
+        })
+      })
+    }, 500)
+  }
+
   return (
     <div id={`message-${props.id}`}>
       <Link to={`/profile/${props.username}`}>
@@ -83,6 +102,7 @@ const MessageItem = (props) => {
       <textarea readOnly type="text">
         {props.value}
       </textarea>
+      {isUserMessage && <button onClick={handleDelete}>Delete Message</button>}
       <p>Number of Likes: {props.likes.length}</p>
       <button onClick={handleClick}>{buttonName}</button>
     </div>
