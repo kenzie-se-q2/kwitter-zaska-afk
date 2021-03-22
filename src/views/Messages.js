@@ -1,25 +1,26 @@
-import { useState, useEffect } from "react";
-import { Redirect } from "react-router-dom";
-import { useStore, ACTIONS } from "../store/store";
-import NavView from "./Header";
-import MessageList from "./MessageList";
+import { useState, useEffect } from "react"
+import { Redirect } from "react-router-dom"
+import { useStore, ACTIONS } from "../store/store"
+import NavView from "./Header"
+import MessageList from "./MessageList"
+import TopTen from "./TopTen"
 import {
   getMessageList,
   createMessageRequest,
   logoutRequest,
-} from "../fetchRequests";
+} from "../fetchRequests"
 
-const Messages = () => {
+const Messages = (props) => {
   // Get Global state
-  const messages = useStore((state) => state.messages);
-  const user = useStore((state) => state.user);
-  const isRedirecting = useStore((state) => state.isRedirecting);
-  const dispatch = useStore((state) => state.dispatch);
+  const messages = useStore((state) => state.messages)
+  const user = useStore((state) => state.user)
+  const isRedirecting = useStore((state) => state.isRedirecting)
+  const dispatch = useStore((state) => state.dispatch)
 
   // Declare local state
-  const [offset, setOffset] = useState(0);
-  const [newMessage, setNewMessage] = useState("");
-  const [count, setCount] = useState(0);
+  const [offset, setOffset] = useState(0)
+  const [newMessage, setNewMessage] = useState("")
+  const [count, setCount] = useState(0)
 
   // Get a list of the most recent messages
   useEffect(() => {
@@ -29,21 +30,23 @@ const Messages = () => {
           type: ACTIONS.SET_MESSAGES,
           payload: { messages: res.messages },
         })
-      );
-    }, 500);
+      )
+    }, 500)
     //eslint-disable-next-line
-  }, [count]);
+  }, [count])
 
   const handleChange = (event) => {
-    setNewMessage(event.target.value);
-  };
+    setNewMessage(event.target.value)
+  }
 
   const handleSubmit = (event) => {
-    event.preventDefault();
+    event.preventDefault()
     createMessageRequest(user.token, newMessage)
       .then(setNewMessage(""))
-      .then(setCount((count) => (count += 1)));
-  };
+      .then(setCount((count) => (count += 1)))
+  }
+
+  const list = props.match.path === "/topten" ? <TopTen /> : <MessageList />
 
   return (
     <>
@@ -58,10 +61,10 @@ const Messages = () => {
         ></textarea>
         <button type="submit">Post</button>
       </form>
-      {messages && <MessageList />}
+      {messages && list}
       {!isRedirecting && <Redirect to="/" />}
     </>
-  );
-};
+  )
+}
 
-export default Messages;
+export default Messages
