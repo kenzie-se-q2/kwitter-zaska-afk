@@ -1,10 +1,10 @@
 // import { render } from "@testing-library/react";
-import React from "react";
-import { useState, useEffect } from "react";
+import React from "react"
+import { useState, useEffect } from "react"
 // import Menu from "../components/Menu";
-import NavView from "./Header";
-import { Redirect } from "react-router-dom";
-import { useStore, ACTIONS } from "../store/store";
+import NavView from "./Header"
+import { Redirect } from "react-router-dom"
+import { useStore, ACTIONS } from "../store/store"
 
 const ImgUpload = ({ onChange, src }) => (
   <label htmlFor="photo-upload" className="custom-file-upload fas">
@@ -13,7 +13,7 @@ const ImgUpload = ({ onChange, src }) => (
     </div>
     <input id="photo-upload" type="file" onChange={onChange} />
   </label>
-);
+)
 
 const Name = ({ onChange, value }) => (
   <div className="field">
@@ -28,7 +28,7 @@ const Name = ({ onChange, value }) => (
       required
     />
   </div>
-);
+)
 
 const Status = ({ onChange, value }) => (
   <div className="field">
@@ -43,7 +43,7 @@ const Status = ({ onChange, value }) => (
       required
     />
   </div>
-);
+)
 
 const Profile = ({ onSubmit, src, name, status }) => (
   <>
@@ -62,7 +62,7 @@ const Profile = ({ onSubmit, src, name, status }) => (
       </form>
     </div>
   </>
-);
+)
 
 const Edit = ({ onSubmit, children }) => (
   <div className="card">
@@ -74,53 +74,53 @@ const Edit = ({ onSubmit, children }) => (
       </button>
     </form>
   </div>
-);
+)
 
 function ProfilePage(props) {
   //This is are the states that will take in the information of the user
-  const [user, setUser] = useState("");
-  const [userStatus, setUserStatus] = useState("");
-  const [imageUrl, setImageUrl] = useState("");
-  const [isActive, setIsActive] = useState("profile");
-  const isRedirecting = useStore((state) => state.isRedirecting);
+  const [user, setUser] = useState("")
+  const [userStatus, setUserStatus] = useState("")
+  const [imageUrl, setImageUrl] = useState("")
+  const [isActive, setIsActive] = useState("profile")
+  const isRedirecting = useStore((state) => state.isRedirecting)
 
   //this is an example/place holder for now
   //ideally we will run this with props.user etc from props that is passed into the component
   //
   useEffect(() => {
-    setUser("Rosie");
+    setUser("Rosie")
     setImageUrl(
       "https://s3.amazonaws.com/cdn.edmundsroses.com/images/popup/24081.jpg"
-    );
-    setUserStatus("Have a Nice Day");
-  }, []);
+    )
+    setUserStatus("Have a Nice Day")
+  }, [])
 
   //handles the image upload
   function photoUpload(event) {
-    const reader = new FileReader();
-    const file = event.target.files[0];
+    const reader = new FileReader()
+    const file = event.target.files[0]
     reader.onloadend = () => {
-      setImageUrl(reader.result);
-    };
-    reader.readAsDataURL(file);
+      setImageUrl(reader.result)
+    }
+    reader.readAsDataURL(file)
   }
 
   //handles the edit of user's name
   function editName(event) {
-    const name = event.target.value;
-    setUser(name);
+    const name = event.target.value
+    setUser(name)
   }
 
   //handles the edit of user status
   function editStatus(event) {
-    const status = event.target.value;
-    setUserStatus(status);
+    const status = event.target.value
+    setUserStatus(status)
   }
 
   //handles the submit
   function handleSubmit(event) {
-    let activeP = event.target.active === "edit" ? "profile" : "edit";
-    setIsActive(activeP);
+    let activeP = event.target.active === "edit" ? "profile" : "edit"
+    setIsActive(activeP)
   }
 
   //here is where the component's created above will be run passing in the
@@ -152,7 +152,7 @@ function ProfilePage(props) {
       </div>
       {!isRedirecting && <Redirect to="/" />}
     </>
-  );
+  )
 }
 
-export default ProfilePage;
+export default ProfilePage
