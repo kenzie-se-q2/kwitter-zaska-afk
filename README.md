@@ -14,3 +14,4 @@ Team Members: Isaac Butterfield, Joshua Dixon, Rosalina Ruiz, Zach Baxter, and Z
 References
 
 - [React Router](https://reactrouter.com/web/api/Redirect)
+- [MuffinMan](https://muffinman.io/blog/uploading-files-using-fetch-multipart-form-data/)
