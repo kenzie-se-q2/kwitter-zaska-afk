@@ -69,11 +69,9 @@ export const getPictureRequest = (username) => {
   return fetch(baseURL + `users/${username}/picture`).then((res) => res.blob())
 }
 
-/* Unused request for setting profile picture */
-
 export const setPictureRequest = (username, picture, token) => {
   const formData = new FormData()
-  formData.append("file", picture)
+  formData.append("picture", picture)
 
   return fetch(baseURL + `users/${username}/picture`, {
     method: "PUT",
