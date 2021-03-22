@@ -13,6 +13,7 @@ function App() {
         <Route path="/register" component={Register} />
         <Route path="/Profile" component={ProfilePage} />
         <Route path="/messages" component={Messages} />
+        <Route path="/topten" component={Messages} />
         <Route component={NotFound} />
       </Switch>
     </div>
