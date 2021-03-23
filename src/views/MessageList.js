@@ -1,8 +1,9 @@
-import MessageItem from "../components/MessageItem"
-import { useStore } from "../store/store"
+import MessageItem from "../components/MessageItem";
+import { useStore } from "../store/store";
+// import "MessageFeed.css";
 
 const MessageList = () => {
-  const messages = useStore((state) => state.messages)
+  const messages = useStore((state) => state.messages);
 
   return (
     <div id="messages">
@@ -19,7 +20,7 @@ const MessageList = () => {
           ))}
       </ul>
     </div>
-  )
-}
+  );
+};
 
-export default MessageList
+export default MessageList;
