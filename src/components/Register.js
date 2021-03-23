@@ -23,7 +23,7 @@ const Register = (props) => {
       formData.password,
       formData.displayName
     )
-      .then(loginRequest(formData.username, formData.password))
+      .then(() => loginRequest(formData.username, formData.password))
       .then((userData) => {
         if (userData.message === undefined) {
           return dispatch({ type: ACTIONS.LOGIN, payload: userData })

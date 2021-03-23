@@ -23,7 +23,7 @@ function NavView(props) {
 
       <button onClick={logout}>Logout</button>
 
-      <Link to="/Profile">
+      <Link to={`/profile/${user.username}`}>
         <button>Profile</button>
       </Link>
       <Link to="/messages">
