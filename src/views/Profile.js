@@ -9,6 +9,7 @@ import {
   setPictureRequest,
   getUserRequest,
   updateUserRequest,
+  deleteUserRequest,
 } from "../fetchRequests"
 
 const ImgUpload = ({ onChange, src }) => (
@@ -54,6 +55,7 @@ const Password = ({ onChange, value }) => (
     <label htmlFor="password">Password:</label>
     <input
       id="password"
+      type="password"
       onChange={onChange}
       minLength="3"
       maxLength="20"
@@ -85,7 +87,7 @@ const Profile = ({ onSubmit, src, name, status, canEdit, username }) => (
   </>
 )
 
-const Edit = ({ onSubmit, changeActive, children }) => (
+const Edit = ({ onSubmit, changeActive, children, handleDelete }) => (
   <div className="card">
     <form onSubmit={onSubmit}>
       <h1>Kwitter Profile Page</h1>
@@ -93,7 +95,8 @@ const Edit = ({ onSubmit, changeActive, children }) => (
       <button type="submit" className="save">
         Save{" "}
       </button>
-      <button onClick={changeActive}>Cancel</button>
+      <button onClick={handleDelete}>Delete Account</button>
+      <button onClick={changeActive}>Back</button>
     </form>
   </div>
 )
@@ -115,6 +118,7 @@ function ProfilePage(props) {
 
   const isRedirecting = useStore((state) => state.isRedirecting)
   const currentUser = useStore((state) => state.user)
+  const dispatch = useStore((state) => state.dispatch)
 
   //this is an example/place holder for now
   //ideally we will run this with props.user etc from props that is passed into the component
@@ -217,6 +221,12 @@ function ProfilePage(props) {
     setIsActive((isActive) => !isActive)
   }
 
+  function handleDelete(event) {
+    deleteUserRequest(currentUser.username, currentUser.token)
+      .then(dispatch({ type: ACTIONS.LOGOUT }))
+      .then(dispatch({ type: ACTIONS.SET_REDIRECTING }))
+  }
+
   function changeIsActive() {
     setIsActive((isActive) => !isActive)
   }
@@ -231,6 +241,7 @@ function ProfilePage(props) {
           <Edit
             onSubmit={(event) => handleSubmit(event)}
             changeActive={(event) => changeIsActive(event)}
+            handleDelete={(event) => handleDelete(event)}
           >
             <ImgUpload
               onChange={(event) => photoUpload(event)}
