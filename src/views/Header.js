@@ -18,13 +18,14 @@ function NavView(props) {
     <>
       <Navbar fixed="top" />
       <Navbar bg="dark" variant="dark" />
-      <NavLink href="#home">Home</NavLink>
-      <NavLink href="#settings">Settings</NavLink>
-      <NavLink href="#Profile">Profile</NavLink>
 
       <button onClick={logout}>Logout</button>
 
-      <Link to="/Profile">
+      <Link to="/messages">
+        <button>Home</button>
+      </Link>
+
+      <Link to={`/profile/${user.username}`}>
         <button>Profile</button>
       </Link>
       <Link to="/topten">

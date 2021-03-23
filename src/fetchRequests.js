@@ -75,7 +75,7 @@ export const setPictureRequest = (username, picture, token) => {
 
   return fetch(baseURL + `users/${username}/picture`, {
     method: "PUT",
-    header: {
+    headers: {
       Authorization: "Bearer " + token,
     },
     body: formData,
