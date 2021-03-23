@@ -1,7 +1,19 @@
-import { Nav, Navbar, NavLink } from "react-bootstrap"
-import { useStore, ACTIONS } from "../store/store"
-import { logoutRequest } from "../fetchRequests"
-import { Link } from "react-router-dom"
+
+// import { Nav, Navbar, NavLink } from "react-bootstrap"
+// import { useStore, ACTIONS } from "../store/store"
+// import { logoutRequest } from "../fetchRequests"
+// import { Link } from "react-router-dom"
+
+import Navbar from 'react-bootstrap/Navbar'
+// import Nav from 'react-bootstrap/Nav'
+import NavLink from 'react-bootstrap/NavLink'
+
+import "bootstrap/dist/css/bootstrap.min.css";
+// import { Nav, Navbar, NavLink } from "react-bootstrap";
+import { useStore, ACTIONS } from "../store/store";
+import { logoutRequest } from "../fetchRequests";
+import { Link } from "react-router-dom";
+
 
 function NavView(props) {
   const user = useStore((state) => state.user)
@@ -18,9 +30,9 @@ function NavView(props) {
     <>
       <Navbar fixed="top" />
       <Navbar bg="dark" variant="dark" />
-      <NavLink href="#home">Home</NavLink>
+      {/* <NavLink href="#home">Home</NavLink>
       <NavLink href="#settings">Settings</NavLink>
-      <NavLink href="#Profile">Profile</NavLink>
+      <NavLink href="#Profile">Profile</NavLink> */}
 
       <button onClick={logout}>Logout</button>
 
