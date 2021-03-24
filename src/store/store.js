@@ -5,7 +5,6 @@ import { devtools, redux } from "zustand/middleware"
 const initialState = {
   user: { token: "" },
   messages: [],
-  likes: [],
   isRedirecting: false,
 }
 

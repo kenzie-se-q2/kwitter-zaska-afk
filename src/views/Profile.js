@@ -71,7 +71,12 @@ const Profile = ({ onSubmit, src, name, status, canEdit, username }) => (
       <form onSubmit={onSubmit}>
         <label className="custom-file-upload fas">
           <div className="img-wrap">
-            <img width="200px" for="photo-upload" src={src} />
+            <img
+              width="200px"
+              for="photo-upload"
+              src={src}
+              alt={`${username}'s Profile Picture`}
+            />
           </div>
         </label>
         <div className="name">{name}</div>

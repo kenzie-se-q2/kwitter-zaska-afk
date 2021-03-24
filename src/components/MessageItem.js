@@ -1,43 +1,43 @@
 // TODO: create a MessageItem component which displays 1 message
-import "./MessageFeed.css";
+import "./MessageFeed.css"
 
-import { useState, useEffect } from "react";
-import { Link } from "react-router-dom";
-import { useStore, ACTIONS } from "../store/store";
+import { useState, useEffect } from "react"
+import { Link } from "react-router-dom"
+import { useStore, ACTIONS } from "../store/store"
 import {
   addLikeRequest,
   removeLikeRequest,
   getMessageList,
   getPictureRequest,
   deleteMessageRequest,
-} from "../fetchRequests";
+} from "../fetchRequests"
 
-import React from "react";
-import Card from "react-bootstrap/Card";
-import Button from "react-bootstrap/Button";
-import "bootstrap/dist/css/bootstrap.min.css";
+import React from "react"
+import Card from "react-bootstrap/Card"
+import Button from "react-bootstrap/Button"
+import "bootstrap/dist/css/bootstrap.min.css"
 
 const MessageItem = (props) => {
-  const user = useStore((state) => state.user);
-  const messages = useStore((state) => state.messages);
-  const dispatch = useStore((state) => state.dispatch);
+  const user = useStore((state) => state.user)
+  const messages = useStore((state) => state.messages)
+  const dispatch = useStore((state) => state.dispatch)
 
-  const [buttonName, setButtonName] = useState("Like");
-  const [isfirstRender, setIsFirstRender] = useState(true);
-  const [profilePicture, setProfilePicture] = useState();
-  const [isUserMessage, setIsUserMessage] = useState(false);
+  const [buttonName, setButtonName] = useState("Like")
+  const [isfirstRender, setIsFirstRender] = useState(true)
+  const [profilePicture, setProfilePicture] = useState()
+  const [isUserMessage, setIsUserMessage] = useState(false)
 
   // Set button name when first loading
   useEffect(() => {
     const likeObj = props.likes.filter(
       (like) => like.username === user.username
-    )[0];
+    )[0]
 
     if (likeObj && isfirstRender) {
-      setButtonName("Remove Like");
-      setIsFirstRender(false);
+      setButtonName("Remove Like")
+      setIsFirstRender(false)
     }
-  });
+  })
 
   useEffect(() => {
     getPictureRequest(props.username).then((picture) => {
@@ -46,34 +46,34 @@ const MessageItem = (props) => {
         picture.type === "image/png" ||
         picture.type === "image/gif"
       ) {
-        const pictureURL = URL.createObjectURL(picture);
-        picture.src = pictureURL;
-        return setProfilePicture(picture);
+        const pictureURL = URL.createObjectURL(picture)
+        picture.src = pictureURL
+        return setProfilePicture(picture)
       }
-    });
+    })
 
     if (props.username === user.username) {
-      setIsUserMessage(true);
+      setIsUserMessage(true)
     }
-  }, []);
+  }, [])
 
   // Handle like button
   const handleClick = () => {
     // When Liking a post
     if (buttonName === "Like") {
-      const messageId = props.id;
-      addLikeRequest(messageId, user.token).then(setButtonName("Remove Like"));
+      const messageId = props.id
+      addLikeRequest(messageId, user.token).then(setButtonName("Remove Like"))
       // When removing a like from a post
     } else {
       const messageObj = messages.filter(
         (message) => message.id === props.id
-      )[0];
+      )[0]
 
       const likeId = messageObj.likes.filter(
         (like) => like.username === user.username
-      )[0].id;
+      )[0].id
 
-      removeLikeRequest(likeId, user.token).then(setButtonName("Like"));
+      removeLikeRequest(likeId, user.token).then(setButtonName("Like"))
     }
 
     // Get updated messages
@@ -82,23 +82,23 @@ const MessageItem = (props) => {
         dispatch({
           type: ACTIONS.SET_MESSAGES,
           payload: { messages: res.messages },
-        });
-      });
-    }, 500);
-  };
+        })
+      })
+    }, 700)
+  }
 
   const handleDelete = () => {
-    deleteMessageRequest(props.id, user.token);
+    deleteMessageRequest(props.id, user.token)
 
     setTimeout(() => {
       getMessageList(15, 0).then((res) => {
         dispatch({
           type: ACTIONS.SET_MESSAGES,
           payload: { messages: res.messages },
-        });
-      });
-    }, 500);
-  };
+        })
+      })
+    }, 500)
+  }
 
   // const linkToProfile = () => {
   //   <Link to={`/profile/${props.username}`}></Link>;
@@ -112,14 +112,12 @@ const MessageItem = (props) => {
           <Card.Body>
             <Card.Title>{props.username}</Card.Title>
             <Card.Text>
-              <textarea readOnly type="text">
-                {props.value}
-              </textarea>
+              <textarea readOnly type="text" value={props.value}></textarea>
 
               {isUserMessage && (
                 <Button onClick={handleDelete}>Delete Message</Button>
               )}
-              <p>Number of Likes: {props.likes.length}</p>
+              <Card.Text>Number of Likes: {props.likes.length}</Card.Text>
               <Button onClick={handleClick}>{buttonName}</Button>
             </Card.Text>
 
@@ -145,7 +143,7 @@ const MessageItem = (props) => {
       </div> */}
       </div>
     </div>
-  );
-};
+  )
+}
 
-export default MessageItem;
+export default MessageItem
