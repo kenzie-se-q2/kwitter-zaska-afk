@@ -129,7 +129,7 @@ function ProfilePage(props) {
   //ideally we will run this with props.user etc from props that is passed into the component
   //
   useEffect(() => {
-    getUserRequest(props.match.params.username).then((userData) => {
+    getUserRequest(props.location.pathname.slice(9)).then((userData) => {
       if (userData.user.username === currentUser.username) {
         setCanEdit(true)
       }
@@ -141,7 +141,7 @@ function ProfilePage(props) {
       )
       setUserStatus(userData.user.about)
     })
-  }, [])
+  }, [props.location.pathname])
 
   //handles the image upload
   function photoUpload(event) {
