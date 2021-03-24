@@ -130,7 +130,7 @@ export const addLikeRequest = (messageId, token) => {
 }
 
 export const removeLikeRequest = (likeId, token) => {
-  return fetch(baseURL + `likes/${likeId}`, {
+  return fetch(`${baseURL}likes/${likeId}`, {
     method: "DELETE",
     headers: { Authorization: "Bearer " + token },
   }).then((res) => res.json())
