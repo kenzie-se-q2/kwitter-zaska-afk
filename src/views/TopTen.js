@@ -7,15 +7,17 @@ const TopTen = () => {
   const messages = useStore((state) => state.messages)
   const dispatch = useStore((state) => state.dispatch)
 
-  const sortedMessages = messages.sort((a, b) => {
-    if (a.likes.length > b.likes.length) return -1
-    if (a.likes.length < b.likes.length) return 1
-    return 0
-  })
+  const sortedMessages = messages
+    .sort((a, b) => {
+      if (a.likes.length > b.likes.length) return -1
+      if (a.likes.length < b.likes.length) return 1
+      return 0
+    })
+    .slice(0, 9)
 
   useEffect(() => {
     setTimeout(() => {
-      getMessageList(10, 0).then((res) =>
+      getMessageList(100, 0).then((res) =>
         dispatch({
           type: ACTIONS.SET_MESSAGES,
           payload: { messages: res.messages },
