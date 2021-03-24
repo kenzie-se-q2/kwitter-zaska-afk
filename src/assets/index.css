@@ -70,19 +70,14 @@ h1 {
 /* Profile Css below  */
 
 .profilebody {
-  font-family: "Hind Guntur", sans-serif;
-  color: #054231;
+
   display: flex;
   justify-content: center;
-  background: #09f;
-  background-image: url("https://i1.wp.com/www.csscodelab.com/wp-content/uploads/2019/11/animated-html-css-ripples-background-example.png?fit=966%2C634&ssl=1");
-  background-repeat: no-repeat, no-repeat;
-  background-position: 200% -40%;
-  background-size: 80%;
+
 }
 
 .card {
-  width: 310px;
+  width: 510px;
   height: 627px;
   padding: 15px;
   margin-top: 40px;
@@ -133,8 +128,8 @@ input[type="file"] {
 
 .img-wrap {
   position: relative;
-  width: 200px;
-  height: 200px;
+  width: 300px;
+  height: 300px;
   overflow: hidden;
   border-radius: 50%;
 }
