@@ -118,7 +118,6 @@ function ProfilePage(props) {
     password: "",
     displayName: "",
     about: "",
-    picture: {},
   })
 
   const isRedirecting = useStore((state) => state.isRedirecting)
@@ -146,18 +145,16 @@ function ProfilePage(props) {
   //handles the image upload
   function photoUpload(event) {
     const reader = new FileReader()
-    const file = event.target.files[0]
+    const picture = event.target.files[0]
     reader.onloadend = () => {
-      if (file.size <= 200000) {
+      if (picture.size <= 200000) {
         setImageUrl(reader.result)
-        setFormData((data) => {
-          return { ...data, picture: file }
-        })
+        setPictureRequest(currentUser.username, picture, currentUser.token)
       } else {
         alert("Image cannot be larger than 200KB")
       }
     }
-    reader.readAsDataURL(file)
+    reader.readAsDataURL(picture)
   }
 
   //handles the edit of user's name
@@ -187,15 +184,6 @@ function ProfilePage(props) {
   //handles the submit
   function handleSubmit(event) {
     event.preventDefault()
-
-    if (formData.picture !== {}) {
-      console.log(currentUser.token)
-      setPictureRequest(
-        currentUser.username,
-        formData.picture,
-        currentUser.token
-      )
-    }
 
     updateUserRequest(
       currentUser.username,
