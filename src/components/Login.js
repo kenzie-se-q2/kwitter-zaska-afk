@@ -1,10 +1,10 @@
-import React, { useState } from "react"
+import React, { useState, useEffect } from "react"
 import { Link, Redirect } from "react-router-dom"
 import { loginRequest } from "../fetchRequests"
 
 import { ACTIONS, useStore } from "../store/store"
 
-function Login(props) {
+function Login() {
   const dispatch = useStore((state) => state.dispatch)
   const isRedirecting = useStore((state) => state.isRedirecting)
 
@@ -13,9 +13,24 @@ function Login(props) {
     password: "",
   })
 
+  useEffect(() => {
+    window.addEventListener("message", handleMessage)
+    return () => {
+      window.removeEventListener("message", handleMessage)
+    }
+  }, [])
+
+  const handleMessage = (e) => {
+    if (e.data.username !== undefined) {
+      dispatch({ type: ACTIONS.LOGIN, payload: e.data })
+      dispatch({ type: ACTIONS.SET_REDIRECTING })
+    }
+  }
+
   const handleLogin = (e) => {
     e.preventDefault()
     loginRequest(formData.username, formData.password)
+      // If the request turned out ok
       .then((userData) => {
         if (userData.message === undefined) {
           return dispatch({ type: ACTIONS.LOGIN, payload: userData })
@@ -35,6 +50,10 @@ function Login(props) {
     const inputName = e.target.name
     const inputValue = e.target.value
     setFormData((state) => ({ ...state, [inputName]: inputValue }))
+  }
+
+  const handleClick = (e) => {
+    window.open("https://socialapp-api.herokuapp.com/auth/google/login")
   }
 
   return (
@@ -58,6 +77,7 @@ function Login(props) {
           onChange={handleChange}
         />
         <button type="submit">Login</button>
+        <button onClick={handleClick}>Login in with Google</button>
 
         <p>
           Don't hava an account? Sign up <Link to="/register">here!</Link>
