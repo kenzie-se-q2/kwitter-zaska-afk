@@ -3,6 +3,7 @@ import { Link, Redirect } from "react-router-dom"
 import { loginRequest } from "../fetchRequests"
 
 import { ACTIONS, useStore } from "../store/store"
+import "./homepage.css" 
 
 function Login(props) {
   const dispatch = useStore((state) => state.dispatch)
@@ -39,6 +40,8 @@ function Login(props) {
 
   return (
     <>
+      <div id ="login">
+
       <form id="login-form" onSubmit={handleLogin}>
         <label htmlFor="username">Username</label>
         <input
@@ -48,7 +51,7 @@ function Login(props) {
           autoFocus
           required
           onChange={handleChange}
-        />
+          />
         <label htmlFor="password">Password</label>
         <input
           type="password"
@@ -56,14 +59,15 @@ function Login(props) {
           value={formData.password}
           required
           onChange={handleChange}
-        />
+          />
         <button type="submit">Login</button>
 
         <p>
-          Don't hava an account? Sign up <Link to="/register">here!</Link>
+          Don't have an account? Sign up <Link to="/register">here!</Link>
         </p>
       </form>
       {isRedirecting && <Redirect to="/messages" />}
+          </div>
     </>
   )
 }

@@ -12,16 +12,14 @@ function Menu(props) {
   const logout = (e) => {
     logoutRequest(user.token)
       .then(() => dispatch({ type: ACTIONS.LOGOUT }))
-      .then(dispatch({ type: ACTIONS.SET_REDIRECTING }));
+      .then(dispatch({ type: ACTIONS.SET_REDIRECTING })); 
   };
 
   return (
     <div id="menu">
-      <h1>Kwitter</h1>
+      <h1 id="header">Kwitter</h1>
       <div id="menu-links">
-        <Link to="/">Home</Link>
-        <Link to="/messages">Messages</Link>
-        <Link to="/Profile">Profile</Link>
+     
         <div id="logout">
           {user.token && <button onClick={logout}>Logout</button>}
         </div>

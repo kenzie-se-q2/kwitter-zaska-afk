@@ -1,0 +1,22 @@
+#root{
+    position: relative;
+}
+
+#menu{
+    display: flex;
+    justify-content: center;
+}
+
+#title{
+    display: flex;
+    flex-direction: column ;
+    justify-content: center;
+   
+}
+
+
+#login{
+    display: flex;
+    justify-content: center;
+margin: 50px;
+}

@@ -2,13 +2,19 @@ import React from "react"
 
 import Login from "../components/Login"
 import Menu from "../components/Menu"
+//import "../homepage.css"
 
 function Home(props) {
   return (
     <>
+      <div id="title">
+
       <Menu />
-      <h2>Your favorite microblogging platform</h2>
+ 
+
       <Login />
+      </div>
+
     </>
   )
 }
