@@ -207,12 +207,8 @@ button {
   background: #2591d6;
 }
 .save {
-  font-weight: 600;
-  left: -20px;
-  text-transform: uppercase;
-  letter-spacing: 1px;
-  width: 20px;
-  box-shadow: 20px 0px 40px 0px #63d3a6;
+  color: #fff;
+  width: 60px;
 }
 .edit {
   color: #fff;
