@@ -2,6 +2,7 @@ import { useEffect } from "react"
 
 import MessageItem from "../components/MessageItem"
 import { useStore, ACTIONS } from "../store/store"
+import { getMessageList } from "../fetchRequests"
 
 const TopTenList = () => {
   const messages = useStore((state) => state.messages)
@@ -16,7 +17,12 @@ const TopTenList = () => {
     .slice(0, 10)
 
   useEffect(() => {
-    dispatch({ type: ACTIONS.SET_LIMIT, payload: { limit: 100 } })
+    getMessageList().then((res) =>
+      dispatch({
+        type: ACTIONS.SET_MESSAGES,
+        payload: { messages: res.messages },
+      })
+    )
   }, [])
 
   return (

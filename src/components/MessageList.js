@@ -5,13 +5,12 @@ import { getMessageList } from "../fetchRequests"
 
 const MessageList = () => {
   const messages = useStore((state) => state.messages)
-  const limit = useStore((state) => state.limit)
   const dispatch = useStore((state) => state.dispatch)
 
-  useEffect(() => {
-    dispatch({ type: ACTIONS.SET_LIMIT, payload: { limit: 15 } })
+  const sortedMessages = messages.slice(0, 15)
 
-    getMessageList(limit, 0).then((res) =>
+  useEffect(() => {
+    getMessageList().then((res) =>
       dispatch({
         type: ACTIONS.SET_MESSAGES,
         payload: { messages: res.messages },
@@ -23,7 +22,7 @@ const MessageList = () => {
     <div id="messages">
       <ul>
         {messages &&
-          messages.map((message) => (
+          sortedMessages.map((message) => (
             <MessageItem
               value={message.text}
               username={message.username}

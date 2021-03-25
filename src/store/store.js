@@ -5,7 +5,6 @@ import { devtools, redux } from "zustand/middleware"
 const initialState = {
   user: { token: "" },
   messages: [],
-  limit: 15,
   isRedirecting: false,
 }
 
@@ -15,7 +14,6 @@ export const ACTIONS = {
   LOGIN: "LOGIN",
   SET_MESSAGES: "SET_MESSAGES",
   SET_REDIRECTING: "SET_REDIRECTING",
-  SET_LIMIT: "SET_LIMIT",
   ADD_LIKE: "ADD_LIKE",
   REMOVE_LIKE: "REMOVE_LIKE",
 }
@@ -40,8 +38,6 @@ const reducer = (state, action) => {
       }
     case ACTIONS.SET_REDIRECTING:
       return { ...state, isRedirecting: !state.isRedirecting }
-    case ACTIONS.SET_LIMIT:
-      return { ...state, limit: action.payload.limit }
     case ACTIONS.ADD_LIKE:
       console.log(action.payload)
       return { ...state, likes: [...state.likes, action.payload.like] }

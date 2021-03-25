@@ -102,10 +102,10 @@ export const getUserMessageList = (limit, offset, username) => {
   ).then((res) => res.json())
 }
 
-export const getMessageList = (limit, offset) => {
-  return fetch(
-    `${baseURL}messages?limit=${limit}&offset=${offset}`
-  ).then((res) => res.json())
+export const getMessageList = () => {
+  return fetch(`${baseURL}messages?limit=${100}&offset=${0}`).then((res) =>
+    res.json()
+  )
 }
 
 //can be in settings or for messages you have posted
