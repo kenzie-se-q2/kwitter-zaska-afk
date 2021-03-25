@@ -7,7 +7,7 @@ import { BrowserRouter } from "react-router-dom"
 
 ReactDOM.render(
   <React.StrictMode>
-    <BrowserRouter basename="kwitter-zaska-afk">
+    <BrowserRouter basename="/kwitter-zaska-afk">
       <App />
     </BrowserRouter>
   </React.StrictMode>,
