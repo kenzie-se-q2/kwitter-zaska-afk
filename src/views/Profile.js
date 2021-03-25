@@ -1,9 +1,7 @@
-// import { render } from "@testing-library/react";
-import React from "react"
-import { useState, useEffect } from "react"
-// import Menu from "../components/Menu";
-import NavView from "./Header"
+import React, { useState, useEffect } from "react"
 import { Redirect } from "react-router-dom"
+
+import NavView from "../components/Header"
 import { useStore, ACTIONS } from "../store/store"
 import {
   setPictureRequest,
@@ -68,7 +66,7 @@ const Password = ({ onChange, value }) => (
 const Profile = ({ onSubmit, src, name, status, canEdit, username }) => (
   <>
     <div className="profilecard">
-    <h3>{name}'s Profile Page</h3>
+      <h3>{name}'s Profile Page</h3>
       <form onSubmit={onSubmit}>
         <label className="custom-file-upload fas">
           <div className="img-wrap">
@@ -96,7 +94,6 @@ const Profile = ({ onSubmit, src, name, status, canEdit, username }) => (
 const Edit = ({ onSubmit, changeActive, children, handleDelete }) => (
   <div className="profilecard">
     <form onSubmit={onSubmit}>
-      
       {children}
       <button type="submit" className="save">
         Save{" "}

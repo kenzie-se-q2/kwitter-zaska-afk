@@ -1,15 +1,17 @@
 import { useState } from "react"
 import { Redirect } from "react-router-dom"
+
 import { useStore, ACTIONS } from "../store/store"
-import NavView from "./Header"
-import MessageList from "./MessageList"
-import TopTen from "./TopTen"
 import { getMessageList, createMessageRequest } from "../fetchRequests"
+import NavView from "../components/Header"
+import MessageList from "../components/MessageList"
+import TopTenList from "../components/TopTenList"
 
 const Messages = (props) => {
   // Get Global state
   const messages = useStore((state) => state.messages)
   const user = useStore((state) => state.user)
+  const limit = useStore((state) => state.limit)
   const isRedirecting = useStore((state) => state.isRedirecting)
   const dispatch = useStore((state) => state.dispatch)
 
@@ -25,18 +27,16 @@ const Messages = (props) => {
     createMessageRequest(user.token, newMessage)
       .then(setNewMessage(""))
       .then(
-        setTimeout(() => {
-          getMessageList(15, 0).then((res) =>
-            dispatch({
-              type: ACTIONS.SET_MESSAGES,
-              payload: { messages: res.messages },
-            })
-          )
-        }, 500)
+        getMessageList(limit, 0).then((res) =>
+          dispatch({
+            type: ACTIONS.SET_MESSAGES,
+            payload: { messages: res.messages },
+          })
+        )
       )
   }
 
-  const list = props.match.path === "/topten" ? <TopTen /> : <MessageList />
+  const list = props.match.path === "/topten" ? <TopTenList /> : <MessageList />
 
   return (
     <>

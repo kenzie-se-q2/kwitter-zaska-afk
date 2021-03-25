@@ -2,21 +2,21 @@ import { useEffect } from "react"
 import MessageItem from "../components/MessageItem"
 import { useStore, ACTIONS } from "../store/store"
 import { getMessageList } from "../fetchRequests"
-// import "MessageFeed.css";
 
 const MessageList = () => {
   const messages = useStore((state) => state.messages)
+  const limit = useStore((state) => state.limit)
   const dispatch = useStore((state) => state.dispatch)
 
   useEffect(() => {
-    setTimeout(() => {
-      getMessageList(15, 0).then((res) =>
-        dispatch({
-          type: ACTIONS.SET_MESSAGES,
-          payload: { messages: res.messages },
-        })
-      )
-    }, 500)
+    dispatch({ type: ACTIONS.SET_LIMIT, payload: { limit: 15 } })
+
+    getMessageList(limit, 0).then((res) =>
+      dispatch({
+        type: ACTIONS.SET_MESSAGES,
+        payload: { messages: res.messages },
+      })
+    )
   }, [])
 
   return (

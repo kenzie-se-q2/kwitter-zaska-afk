@@ -1,20 +1,15 @@
 import React from "react"
-
 import Login from "../components/Login"
-import Menu from "../components/Menu"
-//import "../homepage.css"
 
 function Home(props) {
   return (
     <>
       <div id="title">
-
-      <Menu />
- 
-
-      <Login />
+        <div id="menu">
+          <h1 id="header">Kwitter</h1>
+        </div>
+        <Login />
       </div>
-
     </>
   )
 }

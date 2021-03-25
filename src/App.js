@@ -1,6 +1,6 @@
 import { Switch, Route } from "react-router-dom"
 import Home from "./views/Home"
-import Register from "./components/Register"
+import Register from "./views/Register"
 import NotFound from "./views/NotFound"
 import ProfilePage from "./views/Profile"
 import Messages from "./views/Messages"
