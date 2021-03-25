@@ -1,17 +1,17 @@
-import React from "react";
-import Login from "../components/Login";
-import Menu from "../components/Menu";
-import { useStore } from "../store/store";
+import React from "react"
+import Login from "../components/Login"
 
 function Home(props) {
-  const user = useStore((state) => state.user);
   return (
     <>
-      <Menu />
-      <h2>Your favorite microblogging platform</h2>
-      {!user.token && <Login />}
+      <div id="title">
+        <div id="menu">
+          <h1 id="header">Kwitter</h1>
+        </div>
+        <Login />
+      </div>
     </>
-  );
+  )
 }
 
-export default Home;
+export default Home
