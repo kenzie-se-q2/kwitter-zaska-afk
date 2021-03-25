@@ -107,7 +107,7 @@ const MessageItem = (props) => {
   return (
     <div id="MessageFeed">
       <div id={`message-${props.id}`}>
-        <Card style={{ width: "18rem", height: "auto" }}>
+        <Card style={{ width: "90%", height: "auto" }}>
           <Card.Img variant="top" src={profilePicture && profilePicture.src} />
           <Card.Body>
             <Card.Title>{props.username}</Card.Title>
