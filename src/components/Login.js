@@ -3,7 +3,7 @@ import { Link, Redirect } from "react-router-dom"
 import { loginRequest } from "../fetchRequests"
 
 import { ACTIONS, useStore } from "../store/store"
-import "./homepage.css" 
+import "../assets/homepage.css"
 
 function Login() {
   const dispatch = useStore((state) => state.dispatch)
@@ -59,35 +59,34 @@ function Login() {
 
   return (
     <>
-      <div id ="login">
-
-      <form id="login-form" onSubmit={handleLogin}>
-        <label htmlFor="username">Username</label>
-        <input
-          type="text"
-          name="username"
-          value={formData.username}
-          autoFocus
-          required
-          onChange={handleChange}
+      <div id="login">
+        <form id="login-form" onSubmit={handleLogin}>
+          <label htmlFor="username">Username</label>
+          <input
+            type="text"
+            name="username"
+            value={formData.username}
+            autoFocus
+            required
+            onChange={handleChange}
           />
-        <label htmlFor="password">Password</label>
-        <input
-          type="password"
-          name="password"
-          value={formData.password}
-          required
-          onChange={handleChange}
+          <label htmlFor="password">Password</label>
+          <input
+            type="password"
+            name="password"
+            value={formData.password}
+            required
+            onChange={handleChange}
           />
-        <button type="submit">Login</button>
-        <button onClick={handleClick}>Login in with Google</button>
+          <button type="submit">Login</button>
+          <button onClick={handleClick}>Login in with Google</button>
 
-        <p>
-          Don't have an account? Sign up <Link to="/register">here!</Link>
-        </p>
-      </form>
-      {isRedirecting && <Redirect to="/messages" />}
-          </div>
+          <p>
+            Don't have an account? Sign up <Link to="/register">here!</Link>
+          </p>
+        </form>
+        {isRedirecting && <Redirect to="/messages" />}
+      </div>
     </>
   )
 }

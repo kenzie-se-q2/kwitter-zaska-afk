@@ -1,9 +1,9 @@
 import { useEffect } from "react"
+
 import MessageItem from "../components/MessageItem"
 import { useStore, ACTIONS } from "../store/store"
-import { getMessageList } from "../fetchRequests"
 
-const TopTen = () => {
+const TopTenList = () => {
   const messages = useStore((state) => state.messages)
   const dispatch = useStore((state) => state.dispatch)
 
@@ -13,17 +13,10 @@ const TopTen = () => {
       if (a.likes.length < b.likes.length) return 1
       return 0
     })
-    .slice(0, 9)
+    .slice(0, 10)
 
   useEffect(() => {
-    setTimeout(() => {
-      getMessageList(100, 0).then((res) =>
-        dispatch({
-          type: ACTIONS.SET_MESSAGES,
-          payload: { messages: res.messages },
-        })
-      )
-    }, 500)
+    dispatch({ type: ACTIONS.SET_LIMIT, payload: { limit: 100 } })
   }, [])
 
   return (
@@ -44,4 +37,4 @@ const TopTen = () => {
   )
 }
 
-export default TopTen
+export default TopTenList
