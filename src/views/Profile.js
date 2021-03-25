@@ -67,7 +67,8 @@ const Password = ({ onChange, value }) => (
 
 const Profile = ({ onSubmit, src, name, status, canEdit, username }) => (
   <>
-    <div className="card">
+    <div className="profilecard">
+    <h3>{name}'s Profile Page</h3>
       <form onSubmit={onSubmit}>
         <label className="custom-file-upload fas">
           <div className="img-wrap">
@@ -93,9 +94,9 @@ const Profile = ({ onSubmit, src, name, status, canEdit, username }) => (
 )
 
 const Edit = ({ onSubmit, changeActive, children, handleDelete }) => (
-  <div className="card">
+  <div className="profilecard">
     <form onSubmit={onSubmit}>
-      <h1>Kwitter Profile Page</h1>
+      
       {children}
       <button type="submit" className="save">
         Save{" "}
