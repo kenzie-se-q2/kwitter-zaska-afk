@@ -79,7 +79,7 @@ function Login() {
             onChange={handleChange}
           />
           <button type="submit">Login</button>
-          <button onClick={handleClick}>Login in with Google</button>
+          <button onClick={handleClick}>Login with Google</button>
 
           <p>
             Don't have an account? Sign up <Link to="/register">here!</Link>

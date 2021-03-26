@@ -18,7 +18,6 @@ const LikeButton = (props) => {
 
   const messages = useStore((state) => state.messages)
   const user = useStore((state) => state.user)
-  const limit = useStore((state) => state.limit)
   const dispatch = useStore((state) => state.dispatch)
 
   // Set button name when first loading
@@ -53,7 +52,7 @@ const LikeButton = (props) => {
 
     // Get updated messages
     setTimeout(() => {
-      getMessageList(limit, 0).then((res) => {
+      getMessageList().then((res) => {
         dispatch({
           type: ACTIONS.SET_MESSAGES,
           payload: { messages: res.messages },

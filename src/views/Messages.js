@@ -27,12 +27,14 @@ const Messages = (props) => {
     createMessageRequest(user.token, newMessage)
       .then(setNewMessage(""))
       .then(
-        getMessageList(limit, 0).then((res) =>
-          dispatch({
-            type: ACTIONS.SET_MESSAGES,
-            payload: { messages: res.messages },
+        setTimeout(() => {
+          getMessageList(limit, 0).then((res) => {
+            dispatch({
+              type: ACTIONS.SET_MESSAGES,
+              payload: { messages: res.messages },
+            })
           })
-        )
+        }, 500)
       )
   }
 
