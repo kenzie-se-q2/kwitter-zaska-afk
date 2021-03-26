@@ -1,8 +1,8 @@
 {
   "files": {
     "main.css": "/kwitter-zaska-afk/static/css/main.3bd03658.chunk.css",
-    "main.js": "/kwitter-zaska-afk/static/js/main.dc95f31a.chunk.js",
-    "main.js.map": "/kwitter-zaska-afk/static/js/main.dc95f31a.chunk.js.map",
+    "main.js": "/kwitter-zaska-afk/static/js/main.e014e8b4.chunk.js",
+    "main.js.map": "/kwitter-zaska-afk/static/js/main.e014e8b4.chunk.js.map",
     "runtime-main.js": "/kwitter-zaska-afk/static/js/runtime-main.18a5a529.js",
     "runtime-main.js.map": "/kwitter-zaska-afk/static/js/runtime-main.18a5a529.js.map",
     "static/css/2.4c97ca4f.chunk.css": "/kwitter-zaska-afk/static/css/2.4c97ca4f.chunk.css",
@@ -18,6 +18,6 @@
     "static/css/2.4c97ca4f.chunk.css",
     "static/js/2.8bd7b323.chunk.js",
     "static/css/main.3bd03658.chunk.css",
-    "static/js/main.dc95f31a.chunk.js"
+    "static/js/main.e014e8b4.chunk.js"
   ]
 }
