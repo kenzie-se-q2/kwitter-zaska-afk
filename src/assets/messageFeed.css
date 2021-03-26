@@ -8,7 +8,7 @@
   margin-top: 40px;
   border-radius: 25px;
   width: 85%;
-  
+
   box-shadow: 15px 10px 25px 0px #3fa1a9;
   background: #fff;
   background-image: url(""), url("");
@@ -16,26 +16,22 @@
   background-position: 120% -5%, 200% -40%;
   background-size: 40%, 80%;
   animation: open 0.5s;
-
 }
 
 #message-form {
   margin-top: 40px;
-  
 }
 
- .card {
-  
+.card {
   border-radius: 25px;
   display: flex;
   justify-content: center;
   align-content: center;
   display: inline-block;
-  
 }
 
-textarea{
- border: none;
+textarea {
+  border: none;
 }
 
 .card-img-top {
@@ -44,15 +40,4 @@ textarea{
   padding: 25px;
   margin-bottom: 10px;
   float: left;
-} 
-
-
-
-
-
-
-
-
-
-
-
+}
