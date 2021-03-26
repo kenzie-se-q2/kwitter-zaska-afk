@@ -14,5 +14,11 @@ Team Members: Isaac Butterfield, Joshua Dixon, Rosalina Ruiz, Zach Baxter, and Z
 References
 
 - [React Router](https://reactrouter.com/web/api/Redirect)
+
 - [MuffinMan](https://muffinman.io/blog/uploading-files-using-fetch-multipart-form-data/)
+
 - [Demo Video](https://kenzie.zoom.us/rec/play/CuEj4RkXj-0hEdFDb5cx-tfeJ3EpuEcqDZBJ18673kCqAJrInCrb27f_UTFEOUurCwcNYvJf_md2RL6n.l_DU1Gm4x7CQo6uP?continueMode=true&_x_zm_rtaid=IVHxboFmTnSpIYTHcu5sNw.1616441387259.a447147cebbeb3f3ed7530b7a01eed71&_x_zm_rhtaid=757)
+
+- [Slider Revolution](https://www.sliderrevolution.com/resources/css-animated-background/)
+
+- [youtube](https://www.youtube.com/watch?v=xXFgGGSvXqo)
