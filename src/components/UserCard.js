@@ -21,3 +21,8 @@ function UserCard() {
 }
 
 export default UserCard
+
+{/* <!-- ////////////////////////////////////////////////////////////
+  It doesn't appear that this component was used anywhere. Be sure to cleanup
+  unused or unecessary code.
+//////////////////////////////////////////////////////////// --> */}

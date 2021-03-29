@@ -34,6 +34,10 @@ const MessageItem = (props) => {
         picture.src = pictureURL
         return setProfilePicture(picture)
       }
+      {/* <!-- ////////////////////////////////////////////////////////////
+        This would've been a handy place for an else statement to handle 
+        if the user doesn't have a picture it is set to a defualt image 
+      //////////////////////////////////////////////////////////// --> */}
     })
 
     if (props.username === user.username) {

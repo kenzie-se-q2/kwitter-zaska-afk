@@ -38,7 +38,10 @@ function Login() {
         } else {
           alert(userData.message)
           return false
-        }
+        }  
+{/* <!-- ////////////////////////////////////////////////////////////
+  Awesome error handling here!! 
+//////////////////////////////////////////////////////////// --> */}
       })
       .then((value) => {
         if (value) {
@@ -56,6 +59,12 @@ function Login() {
   const handleClick = (e) => {
     window.open("https://socialapp-api.herokuapp.com/auth/google/login")
   }
+  {/* <!-- ////////////////////////////////////////////////////////////
+    I wouldn't recommend typing out the entire url as you've done here.
+    If you ever needed to change the url, finding all of the places you've 
+    typed in manually can become annoying and tedious. I would recommend
+    importing the baseURL variable from fetchRequest.js in the future.
+  //////////////////////////////////////////////////////////// --> */}
 
   return (
     <>

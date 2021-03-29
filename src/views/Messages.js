@@ -40,6 +40,9 @@ const Messages = (props) => {
 
   const list = props.match.path === "/topten" ? <TopTenList /> : <MessageList />
 
+{/* <!-- ////////////////////////////////////////////////////////////
+  That is a very handy way to conditionally render!! 
+//////////////////////////////////////////////////////////// --> */}
   return (
     <>
       <NavView />
