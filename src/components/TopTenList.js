@@ -38,6 +38,11 @@ const TopTenList = () => {
               key={message.id}
             />
           ))}
+{/* <!-- ////////////////////////////////////////////////////////////
+Personally, I would have just sent message={message} through to MessageItem.
+Then, in MessageItem, you could have destructured all of these variables off by doing:
+const {likes, text, username, createdAt, id } = props.message
+//////////////////////////////////////////////////////////// --> */}
       </ul>
     </div>
   )

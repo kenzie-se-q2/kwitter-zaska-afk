@@ -199,7 +199,9 @@ function ProfilePage(props) {
         setImageUrl(
           `https://socialapp-api.herokuapp.com${data.pictureLocation}`
         )
-
+{/* <!-- ////////////////////////////////////////////////////////////
+  Same thing as in the Login.js file - avoid typing the url when possible.
+//////////////////////////////////////////////////////////// --> */}
         setFormData({
           password: "",
           displayName: "",
@@ -213,6 +215,11 @@ function ProfilePage(props) {
   }
 
   function handleDelete(event) {
+{/* <!-- ////////////////////////////////////////////////////////////
+  I would recommend having some kind of confirmation before deleting the account.
+  If a kiddo or a cat is playing with the user's computer, we don't want
+  to delete their account unless they are sure.
+//////////////////////////////////////////////////////////// --> */}
     deleteUserRequest(currentUser.username, currentUser.token)
       .then(dispatch({ type: ACTIONS.LOGOUT }))
       .then(dispatch({ type: ACTIONS.SET_REDIRECTING }))
@@ -268,3 +275,8 @@ function ProfilePage(props) {
 }
 
 export default ProfilePage
+
+{/* <!-- ////////////////////////////////////////////////////////////
+  This file has a lot going on in it. Although very cool, I think it could 
+  have been refactored to be less complex. 
+//////////////////////////////////////////////////////////// --> */}

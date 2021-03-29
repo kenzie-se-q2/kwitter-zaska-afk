@@ -27,3 +27,8 @@ Many of us felt that we were not contributing enough and had a strong feeling to
 Q. What should we change during the next sprint?
 
 If we were to continue this project we would start trying to implement our Movie Critic theme as well as have more options for interactivity between our users.
+
+
+{/* <!-- ////////////////////////////////////////////////////////////
+That would be a really cool idea!!!! I want to  see that implemented!
+//////////////////////////////////////////////////////////// --> */}
